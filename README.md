@@ -24,10 +24,15 @@ docker-compose up
 
 ## Notes
 
-I know this is a small app but I still prefer the symfony component in case we want to expand later.
+I know this is a small app but I still prefer the symfony component in case we want to expand later. It works with all @ aliases other than '@restart'.
 
-Change in specification:
-- Original input based on specification: your-program * * * * * /usr/bin/php --version
-- New input format: your-program parseCron "* * * * * /usr/bin/php --version"
+### Original input based on specification
 
-Made sure to deal with @ words.
+```
+./your-program * * * * * /usr/bin/php --version
+```
+
+### New input format adds the type of command and quotes around the cron line
+```
+./your-program parseCron "* * * * * /usr/bin/php --version"
+```
