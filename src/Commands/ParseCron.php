@@ -2,13 +2,12 @@
 
 namespace ElliottLandsborough\PhpTerminalApp\Commands;
 
+use ElliottLandsborough\PhpTerminalApp\Services\Cron;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
-use ElliottLandsborough\PhpTerminalApp\Services\Cron;
 
 class ParseCron extends Command
 {
@@ -30,22 +29,22 @@ class ParseCron extends Command
     {
         $this
             // ...
-            ->addArgument('cron_string', InputArgument::REQUIRED, 'A line from crontab e.g * * * * * /usr/bin/php --version')
-        ;
+            ->addArgument('cron_string', InputArgument::REQUIRED, 'A line from crontab e.g * * * * * /usr/bin/php --version');
     }
 
     /**
-     * Execute the command
+     * Execute the command.
      *
-     * @param  InputInterface  $input
-     * @param  OutputInterface $output
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
      * @return int 0 if everything went fine, or an exit code.
      */
     protected function execute(
         InputInterface $input,
         OutputInterface $output
     ): int {
-        $cron = new Cron;
+        $cron = new Cron();
 
         $array = $cron->parseToArray($input->getArgument('cron_string'));
 
