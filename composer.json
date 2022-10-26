@@ -14,5 +14,8 @@
         {
             "name": "Elliott Landsborough"
         }
-    ]
+    ],
+    "require-dev": {
+        "symfony/test-pack": "^1.0"
+    }
 }

@@ -113,13 +113,23 @@ class Cron
                 $maximum = $dashArray[1];
             }
 
+            if ($minimum < $min) {
+                $error = "Invalid: $input. '$minimum' too low. Minimum: '$min'.";
+                throw new Exception($error);
+            }
+
+            if ($maximum > $max) {
+                $error = "Invalid: $input. '$maximum' too high. Maximum: '$max'.";
+                throw new Exception();
+            }
+
             // Step through from minimum to maximum
             for ($i = $minimum; $i <= $maximum; $i += $step) {
                 $result[$i] = (int) $i;
             }
         }
 
-        ksort($result);
+        sort($result);
 
         return $result;
     }
