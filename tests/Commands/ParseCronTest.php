@@ -37,7 +37,7 @@ class ParseCronTest extends TestCase
     {
         $this->commandTester->execute(
             [
-                'cron_string' => '*/30 0,1,2,3 1-2 2-3 3-4 /path/executable --argument'
+                'cron_string' => '*/30 0,1,2,3 1-2 2-3 3-4 /path/executable --argument',
             ]
         );
 
