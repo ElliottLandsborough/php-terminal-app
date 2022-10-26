@@ -7,7 +7,7 @@ use Exception;
 class Cron
 {
     /**
-     * Validate a cron time string e.g '* * * * *'
+     * Validate a cron time string e.g '* * * * *'.
      *
      * @param string $input The cron time string to be validated
      *
@@ -24,7 +24,7 @@ class Cron
     }
 
     /**
-     * Take crontab input and replace any special strings with proper time strings
+     * Take crontab input and replace any special strings with proper time strings.
      *
      * @param string $input A cron line
      *
@@ -60,11 +60,11 @@ class Cron
     }
 
     /**
-     * Generate/parse the time values from the cron time string
+     * Generate/parse the time values from the cron time string.
      *
-     * @param string  $input The cron time string e.g '* * * * *'
-     * @param integer $min   Minimum for the specific timeset e.g '1' for months
-     * @param integer $max   Maximum for the specifix timeset e.g '12' for months
+     * @param string $input The cron time string e.g '* * * * *'
+     * @param int    $min   Minimum for the specific timeset e.g '1' for months
+     * @param int    $max   Maximum for the specifix timeset e.g '12' for months
      *
      * @return array<int>
      */
@@ -125,7 +125,7 @@ class Cron
     }
 
     /**
-     * Parse cron string to an array of dates and commands
+     * Parse cron string to an array of dates and commands.
      *
      * @param string $input A full cron string e.g '* * * * * /usr/bin/php --version'
      *
