@@ -16,7 +16,7 @@ composer install
 I know this is a small app but I still prefer the symfony component in case we want to expand later.
 
 Change in specification:
-   - Original input based on specification: your-program * * * * * /usr/bin/php --version
-   - New input format: your-program parseCron "* * * * * /usr/bin/php --version"
+- Original input based on specification: your-program * * * * * /usr/bin/php --version
+- New input format: your-program parseCron "* * * * * /usr/bin/php --version"
 
 Made sure to deal with @ words.
