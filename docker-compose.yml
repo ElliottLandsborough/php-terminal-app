@@ -1,0 +1,9 @@
+version: '2'
+
+services: 
+  php:
+    build: ./
+    working_dir: /project
+    command: bash -c "composer install && ./vendor/bin/phpunit -vvv && ./bin/app parseCron \"* * * * * /usr/bin/php --version\""
+    volumes:
+      - ./:/project
