@@ -87,12 +87,12 @@ class Cron
             // Dash represents a range of values e.g 1-5 = 1,2,3,4,5
             $dashArray = explode('-', $divisor[0]);
 
+            // We want the top half of the divisor fraction
+            $minimum = $divisor[0];
+
             // If the item was '*' then use the provided minimum
             if ($divisor[0] == '*') {
                 $minimum = $min;
-            } else {
-                // Otherwise we want the top half of the divisor fraction
-                $minimum = $divisor[0];
             }
 
             // Two items in dash array, so minimum is first item
@@ -100,12 +100,12 @@ class Cron
                 $minimum = $dashArray[0];
             }
 
+            // we want the top half of the divisor fraction
+            $maximum = $divisor[0];
+
             // If the item was '*' then use the provided minimum
             if ($divisor[0] == '*') {
                 $maximum = $max;
-            } else {
-                // Otherwise we want the top half of the divisor fraction
-                $maximum = $divisor[0];
             }
 
             // Two items in dash array, so minimum is second item
