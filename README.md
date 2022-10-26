@@ -26,7 +26,7 @@ docker-compose up
 
 ## Notes
 
-I know this is a small app but I still prefer the symfony component in case we want to expand later. It works with all @ aliases other than '@restart'.
+I know this is a small app but I still prefer the symfony component in case we want to expand later. It works with all @ nicknames other than '@restart'. Equivalents were taken from the crontab manpage.
 
 ### Original input based on specification
 
