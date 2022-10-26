@@ -3,6 +3,7 @@
 namespace ElliottLandsborough\PhpTerminalApp\Commands;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -46,7 +47,17 @@ class ParseCron extends Command
     ): int {
         $cron = new Cron;
 
-        print_r($cron->parseToArray($input->getArgument('cron_string')));
+        $array = $cron->parseToArray($input->getArgument('cron_string'));
+
+        $rows = [];
+
+        foreach ($array as $title => $array) {
+            $rows[] = [$title, implode(' ', $array)];
+        }
+
+        $table = new Table($output);
+        $table->setRows($rows);
+        $table->render();
 
         return Command::SUCCESS;
     }
