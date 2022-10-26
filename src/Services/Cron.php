@@ -3,19 +3,21 @@
 namespace ElliottLandsborough\PhpTerminalApp\Services;
 
 use Exception;
-use Throwable;
 
-class Cron {
-    protected function validate(String $input) {
+class Cron
+{
+    protected function validate(string $input)
+    {
         // https://github.com/jkonieczny/PHP-Crontab/blob/da2d961f859412a107d8affd6acff751138ed5ee/Crontab.class.php#L54
         $regex = '/^((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)$/i';
 
-        if(!preg_match($regex, trim($input))){
-            throw new Exception("Invalid cron string: ".$input);
+        if (!preg_match($regex, trim($input))) {
+            throw new Exception('Invalid cron string: '.$input);
         }
     }
 
-    protected function parseSpecialStrings(String $input): string {
+    protected function parseSpecialStrings(string $input): string
+    {
         // List of 'special' cron strings
         $specialStrings = [
             '@reboot'   => false,
@@ -31,7 +33,7 @@ class Cron {
         foreach ($specialStrings as $original => $replacement) {
             if (str_starts_with($input, $original)) {
                 if ($replacement === false) {
-                    throw new Exception("Time machine not found. Cannot tell when next reboot will occur.");
+                    throw new Exception('Time machine not found. Cannot tell when next reboot will occur.');
                 }
 
                 $input = str_replace($original, $replacement, $input);
@@ -43,10 +45,10 @@ class Cron {
         return $input;
     }
 
-    public function parseTimeValues(String $s, int $min, int $max): array
+    public function parseTimeValues(string $s, int $min, int $max): array
     {
         $result = [];
-    
+
         // commas represent multiple ranges
         $commaSections = explode(',', $s);
 
@@ -69,8 +71,7 @@ class Cron {
                 // If the item was '*' then use the provided minimum
                 if ($divisor[0] == '*') {
                     $minimum = $min;
-                }
-                else {
+                } else {
                     // Otherwise we want the top half of the divisor fraction
                     $minimum = $divisor[0];
                 }
@@ -85,16 +86,15 @@ class Cron {
                 // If the item was '*' then use the provided minimum
                 if ($divisor[0] == '*') {
                     $maximum = $max;
-                }
-                else {
+                } else {
                     // Otherwise we want the top half of the divisor fraction
                     $maximum = $divisor[0];
                 }
             }
 
             // Step through from minimum to maximum
-            for($i = $minimum; $i <= $maximum; $i += $step) {
-                $result[$i]=intval($i);
+            for ($i = $minimum; $i <= $maximum; $i += $step) {
+                $result[$i] = intval($i);
             }
         }
 
@@ -103,13 +103,13 @@ class Cron {
         return $result;
     }
 
-    public function parseToArray(String $input): array
+    public function parseToArray(string $input): array
     {
         $input = trim($input);
 
         $input = $this->parseSpecialStrings($input);
 
-        $exploded = explode(" ", trim($input));
+        $exploded = explode(' ', trim($input));
 
         $timeArray = array_slice($exploded, 0, 5);
         $timeString = implode(' ', $timeArray);
@@ -119,12 +119,12 @@ class Cron {
         $this->validate($timeString);
 
         return [
-            'Minute'    => $this->parseTimeValues($timeArray[0],0,59),
-            'Hour'      => $this->parseTimeValues($timeArray[1],0,23),
-            'Day of month'  => $this->parseTimeValues($timeArray[2],1,31),
-            'Month'     => $this->parseTimeValues($timeArray[3],1,12),
-            'Day of week'   => $this->parseTimeValues($timeArray[4],0,6),
-            'Command'   => $commandArray,
+            'Minute'        => $this->parseTimeValues($timeArray[0], 0, 59),
+            'Hour'          => $this->parseTimeValues($timeArray[1], 0, 23),
+            'Day of month'  => $this->parseTimeValues($timeArray[2], 1, 31),
+            'Month'         => $this->parseTimeValues($timeArray[3], 1, 12),
+            'Day of week'   => $this->parseTimeValues($timeArray[4], 0, 6),
+            'Command'       => $commandArray,
         ];
     }
 }
