@@ -30,12 +30,12 @@ I know this is a small app but I still prefer the symfony component in case we w
 
 ### Original input based on specification
 
-```
+```bash
 ./path-to-app * * * * * /usr/bin/php --version
 ```
 
 ### New input format adds the type of command and quotes around the cron line
-```
+```bash
 ./bin/app parseCron "* * * * * /usr/bin/php --version"
 ```
 
