@@ -15,5 +15,8 @@
             "name": "Elliott Landsborough",
             "email": "elliott.landsborough@gmail.com"
         }
-    ]
+    ],
+    "require-dev": {
+        "symfony/test-pack": "^1.0"
+    }
 }

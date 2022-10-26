@@ -11,6 +11,12 @@ composer install
 ./bin/app
 ```
 
+## How to test
+```bash
+composer install
+./vendor/bin/phpunit
+```
+
 ## Notes
 
 I know this is a small app but I still prefer the symfony component in case we want to expand later.
