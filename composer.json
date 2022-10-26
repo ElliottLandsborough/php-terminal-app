@@ -1,0 +1,18 @@
+{
+    "name": "elliottlandsborough/php-terminal-app",
+    "description": "Parse cron lines into a readable format",
+    "require": {
+        "symfony/console": "^6.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ElliottLandsborough\\PhpTerminalApp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Elliott Landsborough"
+        }
+    ]
+}
