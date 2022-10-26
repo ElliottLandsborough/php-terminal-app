@@ -145,7 +145,7 @@ class Cron
     {
         $input = trim($input);
 
-        $input = $this->parseSpecialStrings($input);
+        $input = $this->parseNicknames($input);
 
         $exploded = explode(' ', trim($input));
 
