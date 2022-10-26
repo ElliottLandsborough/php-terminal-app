@@ -1,12 +1,13 @@
 <?php
 
-namespace ElliottLandsborough\PhpCronParse\Commands;
+namespace ElliottLandsborough\PhpTerminalApp\Commands;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use ElliottLandsborough\PhpCronParse\Services\Cron;
+use ElliottLandsborough\PhpTerminalApp\Services\Cron;
 
 class ParseCron extends Command
 {
@@ -24,6 +25,14 @@ class ParseCron extends Command
      */
     protected static $defaultDescription = 'Parse a cron line';
 
+    protected function configure(): void
+    {
+        $this
+            // ...
+            ->addArgument('cron_string', InputArgument::REQUIRED, 'A line from crontab e.g * * * * * /usr/bin/php --version')
+        ;
+    }
+
     /**
      * Execute the command
      *
@@ -33,31 +42,11 @@ class ParseCron extends Command
      */
     protected function execute(
         InputInterface $input,
-        OutputInterface $output,
-        Cron $cron
+        OutputInterface $output
     ): int {
-        /*
-        $term1 = rand(1, 10);
-        $term2 = rand(1, 10);
-        $result = $term1 + $term2;
+        $cron = new Cron;
 
-        $io = new SymfonyStyle($input, $output);
-
-        $answer = (int) $io->ask(sprintf('What is %s + %s?', $term1, $term2));
-
-        if ($answer === $result) {
-            $io->success('Well done!');
-        } else {
-            $io->error(sprintf('Aww, so close. The answer was %s', $result));
-        }
-
-        if ($io->confirm('Play again?')) {
-            return $this->execute($input, $output);
-        }
-
-        */
-
-
+        print_r($cron->parseToArray($input->getArgument('cron_string')));
 
         return Command::SUCCESS;
     }

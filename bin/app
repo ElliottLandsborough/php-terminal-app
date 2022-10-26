@@ -4,7 +4,7 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
-use ElliottLandsborough\PhpCronParse\Commands\ParseCron;
+use ElliottLandsborough\PhpTerminalApp\Commands\ParseCron;
 
 $application = new Application();
 $application->add(new ParseCron);
