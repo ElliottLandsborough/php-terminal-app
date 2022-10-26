@@ -18,7 +18,7 @@ class CronTest extends TestCase
         $this->cron = new Cron();
     }
 
-    public function testParseToArray()
+    public function testParseToArray1()
     {
         // test that some ranges work
         $cronLine = '0-1 0-2 1-2 1-2 0-2 /usr/bin/test';
@@ -35,7 +35,10 @@ class CronTest extends TestCase
         ];
 
         $this->assertEquals($response, $expected);
+    }
 
+    public function testParseToArray2()
+    {
         // test that every 15 minutes works
         $cronLine = '*/15 0-1 1-2 1-2 0-1 /usr/bin/test';
 
@@ -51,7 +54,10 @@ class CronTest extends TestCase
         ];
 
         $this->assertEquals($response, $expected);
+    }
 
+    public function testParseToArray3()
+    {
         // test that 0 hour works
         $cronLine = '0-1 0 1-2 1-2 0-1 /usr/bin/test';
 
@@ -67,7 +73,10 @@ class CronTest extends TestCase
         ];
 
         $this->assertEquals($response, $expected);
+    }
 
+    public function testParseToArray4()
+    {
         // test that 1st/15th day of month works
         $cronLine = '0-1 0-1 1,15 1-2 0-1 /usr/bin/test';
 
@@ -83,7 +92,10 @@ class CronTest extends TestCase
         ];
 
         $this->assertEquals($response, $expected);
+    }
 
+    public function testParseToArray5()
+    {
         // test that * month works
         $cronLine = '0-1 0-1 2-3 * 0-1 /usr/bin/test';
 
@@ -99,7 +111,10 @@ class CronTest extends TestCase
         ];
 
         $this->assertEquals($response, $expected);
+    }
 
+    public function testParseToArray6()
+    {
         // test that 1-5 day of month works
         $cronLine = '0-1 0-1 1-2 1-2 1-5 /usr/bin/test';
 
@@ -115,7 +130,10 @@ class CronTest extends TestCase
         ];
 
         $this->assertEquals($response, $expected);
+    }
 
+    public function testParseToArray7()
+    {
         // test that command array works
         $cronLine = '0-1 0-1 1-2 1-2 0-1 /usr/bin/find --testme';
 
