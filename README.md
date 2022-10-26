@@ -29,10 +29,27 @@ I know this is a small app but I still prefer the symfony component in case we w
 ### Original input based on specification
 
 ```
-./your-program * * * * * /usr/bin/php --version
+./path-to-app * * * * * /usr/bin/php --version
 ```
 
 ### New input format adds the type of command and quotes around the cron line
 ```
-./your-program parseCron "* * * * * /usr/bin/php --version"
+./bin/app parseCron "* * * * * /usr/bin/php --version"
+```
+
+### Input
+```bash
+./bin/app parseCron "*/10 1,2,3 5-11 1 6 /usr/bin/php --version"
+```
+
+### Output
+```bash
++--------------+------------------------+
+| Minute       | 0 10 20 30 40 50       |
+| Hour         | 1 2 3                  |
+| Day of month | 5 6 7 8 9 10 11        |
+| Month        | 1                      |
+| Day of week  | 6                      |
+| Command      | /usr/bin/php --version |
++--------------+------------------------+
 ```
