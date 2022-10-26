@@ -155,39 +155,34 @@ class CronTest extends TestCase
     {
         $this->expectException(Exception::class);
         $cronLine = "@restart /usr/bin/find";
-        $response = $this->cron->parseToArray($cronLine);
-        $this->assertEquals($response, $expected);
+        $this->cron->parseToArray($cronLine);
     }
 
     public function textMinExceptionDayOfMonth()
     {
         $this->expectException(Exception::class);
         $cronLine = "0-1 0-1 0-2 1-2 0-1 /usr/bin/find";
-        $response = $this->cron->parseToArray($cronLine);
-        $this->assertEquals($response, $expected);
+        $this->cron->parseToArray($cronLine);
     }
 
     public function textMinExceptionMonth()
     {
         $this->expectException(Exception::class);
         $cronLine = "0-1 0-1 1-2 0-2 0-1 /usr/bin/find";
-        $response = $this->cron->parseToArray($cronLine);
-        $this->assertEquals($response, $expected);
+        $this->cron->parseToArray($cronLine);
     }
 
     public function textMaxException1()
     {
         $this->expectException(Exception::class);
         $cronLine = "0-999 0-1 0-2 1-2 0-1 /usr/bin/find";
-        $response = $this->cron->parseToArray($cronLine);
-        $this->assertEquals($response, $expected);
+        $this->cron->parseToArray($cronLine);
     }
 
     public function textMaxException2()
     {
         $this->expectException(Exception::class);
         $cronLine = "0-1 0-999 0-2 1-2 0-1 /usr/bin/find";
-        $response = $this->cron->parseToArray($cronLine);
-        $this->assertEquals($response, $expected);
+        $this->cron->parseToArray($cronLine);
     }
 }
