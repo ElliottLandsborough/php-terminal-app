@@ -1,6 +1,6 @@
 # PHP Terminal App
 
-[![Code Style](https://github.styleci.io/repos/557697023/shield?style=flat&branch=master)](https://github.styleci.io/repos/557697023)
+[![Code Style](https://github.styleci.io/repos/557697023/shield?style=flat&branch=main)](https://github.styleci.io/repos/557697023)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/83b45b1fc606435ab44e5d5e757b6af6)](https://www.codacy.com/gh/ElliottLandsborough/php-terminal-app/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ElliottLandsborough/php-terminal-app&amp;utm_campaign=Badge_Grade)
 
