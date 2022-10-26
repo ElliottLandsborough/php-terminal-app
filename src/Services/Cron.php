@@ -45,12 +45,12 @@ class Cron
         return $input;
     }
 
-    public function parseTimeValues(string $s, int $min, int $max): array
+    public function parseTimeValues(string $input, int $min, int $max): array
     {
         $result = [];
 
         // commas represent multiple ranges
-        $commaSections = explode(',', $s);
+        $commaSections = explode(',', $input);
 
         // loop through each range
         foreach ($commaSections as $commaSection) {
@@ -64,32 +64,30 @@ class Cron
             // Dash represents a range of values e.g 1-5 = 1,2,3,4,5
             $dashArray = explode('-', $divisor[0]);
 
+            // If the item was '*' then use the provided minimum
+            if ($divisor[0] == '*') {
+                $minimum = $min;
+            } else {
+                // Otherwise we want the top half of the divisor fraction
+                $minimum = $divisor[0];
+            }
+
             // Two items in dash array, so minimum is first item
             if (count($dashArray) == 2) {
                 $minimum = $dashArray[0];
-            } else {
-                // If the item was '*' then use the provided minimum
-                if ($divisor[0] == '*') {
-                    $minimum = $min;
-                } else {
-                    // Otherwise we want the top half of the divisor fraction
-                    $minimum = $divisor[0];
-                }
             }
 
-            //$_max = count($vvvv)==2?$vvvv[1]:($vvv[0]=='*'?$max:$vvv[0]);
+            // If the item was '*' then use the provided minimum
+            if ($divisor[0] == '*') {
+                $maximum = $max;
+            } else {
+                // Otherwise we want the top half of the divisor fraction
+                $maximum = $divisor[0];
+            }
 
             // Two items in dash array, so minimum is second item
             if (count($dashArray) == 2) {
                 $maximum = $dashArray[1];
-            } else {
-                // If the item was '*' then use the provided minimum
-                if ($divisor[0] == '*') {
-                    $maximum = $max;
-                } else {
-                    // Otherwise we want the top half of the divisor fraction
-                    $maximum = $divisor[0];
-                }
             }
 
             // Step through from minimum to maximum
