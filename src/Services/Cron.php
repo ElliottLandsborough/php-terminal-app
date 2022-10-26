@@ -15,6 +15,7 @@ class Cron
      */
     protected function validate(string $input)
     {
+        // https://stackoverflow.com/questions/14203122/create-a-regular-expression-for-cron-statement
         $regex = '/^((((\d+,)+\d+|(\d+(\/|-|#)\d+)|\d+L?|\*(\/\d+)?|L(-\d+)?|\?|[A-Z]{3}(-[A-Z]{3})?) ?){5,7})$/m';
 
         if (!preg_match($regex, trim($input))) {
