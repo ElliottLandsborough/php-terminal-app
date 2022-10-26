@@ -6,6 +6,13 @@ use Exception;
 
 class Cron
 {
+    /**
+     * Validate a cron time string e.g '* * * * *'
+     *
+     * @param string $input The cron time string to be validated
+     *
+     * @return void
+     */
     protected function validate(string $input)
     {
         // https://github.com/jkonieczny/PHP-Crontab/blob/da2d961f859412a107d8affd6acff751138ed5ee/Crontab.class.php#L54
@@ -16,6 +23,13 @@ class Cron
         }
     }
 
+    /**
+     * Take crontab input and replace any special strings with proper time strings
+     *
+     * @param string $input A cron line
+     *
+     * @return string The string with the special value replaced
+     */
     protected function parseSpecialStrings(string $input): string
     {
         // List of 'special' cron strings
@@ -45,7 +59,16 @@ class Cron
         return $input;
     }
 
-    public function parseTimeValues(string $input, int $min, int $max): array
+    /**
+     * Generate/parse the time values from the cron time string
+     *
+     * @param string  $input The cron time string e.g '* * * * *'
+     * @param integer $min   Minimum for the specific timeset e.g '1' for months
+     * @param integer $max   Maximum for the specifix timeset e.g '12' for months
+     *
+     * @return array<int>
+     */
+    protected function parseTimeValues(string $input, int $min, int $max): array
     {
         $result = [];
 
@@ -101,6 +124,13 @@ class Cron
         return $result;
     }
 
+    /**
+     * Parse cron string to an array of dates and commands
+     *
+     * @param string $input A full cron string e.g '* * * * * /usr/bin/php --version'
+     *
+     * @return array<string, array<int|string>>
+     */
     public function parseToArray(string $input): array
     {
         $input = trim($input);
