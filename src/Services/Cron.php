@@ -15,8 +15,7 @@ class Cron
      */
     protected function validate(string $input)
     {
-        // https://github.com/jkonieczny/PHP-Crontab/blob/da2d961f859412a107d8affd6acff751138ed5ee/Crontab.class.php#L54
-        $regex = '/^((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)\s+((\*(\/[0-9]+)?)|[0-9\-\,\/]+)$/i';
+        $regex = '/^((((\d+,)+\d+|(\d+(\/|-|#)\d+)|\d+L?|\*(\/\d+)?|L(-\d+)?|\?|[A-Z]{3}(-[A-Z]{3})?) ?){5,7})$/m';
 
         if (!preg_match($regex, trim($input))) {
             throw new Exception('Invalid cron string: '.$input);
@@ -30,24 +29,23 @@ class Cron
      *
      * @return string The string with the special value replaced
      */
-    protected function parseSpecialStrings(string $input): string
+    protected function parseNicknames(string $input): string
     {
         // List of 'special' cron strings
-        $specialStrings = [
+        $nickNames = [
             '@reboot'   => false,
             '@yearly'   => '0 0 1 1 *,',
             '@anually'  => '0 0 1 1 *,',
             '@monthly'  => '0 0 1 * *',
             '@weekly'   => '0 0 * * 0',
             '@daily'    => '0 0 * * *',
-            '@midnight' => '0 0 * * *',
             '@hourly'   => '0 * * * *',
         ];
 
-        foreach ($specialStrings as $original => $replacement) {
+        foreach ($nickNames as $original => $replacement) {
             if (str_starts_with($input, $original)) {
                 if ($replacement === false) {
-                    throw new Exception('Time machine not found. Cannot tell when next reboot will occur.');
+                    throw new Exception('Time machine not found.');
                 }
 
                 $input = str_replace($original, $replacement, $input);
