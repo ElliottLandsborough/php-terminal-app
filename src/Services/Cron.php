@@ -92,7 +92,7 @@ class Cron
 
             // Step through from minimum to maximum
             for ($i = $minimum; $i <= $maximum; $i += $step) {
-                $result[$i] = intval($i);
+                $result[$i] = (int) $i;
             }
         }
 
