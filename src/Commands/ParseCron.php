@@ -25,6 +25,11 @@ class ParseCron extends Command
      */
     protected static $defaultDescription = 'Parse a cron line';
 
+    /**
+     * Configures the command
+     *
+     * @return void
+     */
     protected function configure(): void
     {
         $this
