@@ -100,8 +100,6 @@ class Cron {
 
         ksort($result);
 
-        print_r($result);
-
         return $result;
     }
 
@@ -117,18 +115,16 @@ class Cron {
         $timeString = implode(' ', $timeArray);
 
         $commandArray = array_slice($exploded, 5);
-        $commandString = implode(' ', $commandArray);
 
         $this->validate($timeString);
 
-        $dates = [
-            'minute'    => $this->parseTimeValues($timeArray[0],0,59),
-            'hour'      => $this->parseTimeValues($timeArray[1],0,23),
-            'monthday'  => $this->parseTimeValues($timeArray[2],1,31),
-            'month'     => $this->parseTimeValues($timeArray[3],1,12),
-            'weekday'   => $this->parseTimeValues($timeArray[4],0,6),
+        return [
+            'Minute'    => $this->parseTimeValues($timeArray[0],0,59),
+            'Hour'      => $this->parseTimeValues($timeArray[1],0,23),
+            'Day of month'  => $this->parseTimeValues($timeArray[2],1,31),
+            'Month'     => $this->parseTimeValues($timeArray[3],1,12),
+            'Day of week'   => $this->parseTimeValues($timeArray[4],0,6),
+            'Command'   => $commandArray,
         ];
-
-        return $exploded;
     }
 }
