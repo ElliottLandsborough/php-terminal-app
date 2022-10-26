@@ -18,6 +18,12 @@ class CronTest extends TestCase
         $this->cron = new Cron();
     }
 
+    // runs after each test
+    public function tearDown(): void
+    {
+        $this->cron = null;
+    }
+
     public function testParseToArray1()
     {
         // test that some ranges work
