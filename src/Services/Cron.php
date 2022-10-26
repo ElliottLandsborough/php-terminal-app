@@ -115,11 +115,13 @@ class Cron
 
             if ($minimum < $min) {
                 $error = "Invalid: $input. '$minimum' too low. Minimum: '$min'.";
+
                 throw new Exception($error);
             }
 
             if ($maximum > $max) {
                 $error = "Invalid: $input. '$maximum' too high. Maximum: '$max'.";
+
                 throw new Exception();
             }
 
