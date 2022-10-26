@@ -17,6 +17,11 @@ composer install
 ./vendor/bin/phpunit
 ```
 
+## How to test with docker
+```bash
+docker-compose up
+```
+
 ## Notes
 
 I know this is a small app but I still prefer the symfony component in case we want to expand later.
