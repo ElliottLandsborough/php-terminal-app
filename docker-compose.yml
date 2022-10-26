@@ -4,6 +4,6 @@ services:
   php:
     build: ./
     working_dir: /project
-    command: bash -c "composer install && ./vendor/bin/phpunit -vvv && ./bin/app parseCron \"* * * * * /usr/bin/php --version\""
+    command: bash -c "composer install && ./vendor/bin/phpunit -vvv && ./bin/app parseCron \"*/10 1,2,3 5-11 1 6 /usr/bin/php --version\""
     volumes:
       - ./:/project
