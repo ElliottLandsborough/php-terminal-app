@@ -3,28 +3,16 @@
 namespace ElliottLandsborough\PhpTerminalApp\Commands;
 
 use ElliottLandsborough\PhpTerminalApp\Services\Cron;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: 'parseCron', description: 'Parse a cron line')]
 class ParseCron extends Command
 {
-    /**
-     * The name of the command (the part after "bin/app").
-     *
-     * @var string
-     */
-    protected static $defaultName = 'parseCron';
-
-    /**
-     * The command description shown when running "php bin/app list".
-     *
-     * @var string
-     */
-    protected static $defaultDescription = 'Parse a cron line';
-
     /**
      * Configures the command.
      *
