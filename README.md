@@ -11,3 +11,5 @@ I know this is a small app but I still prefer the symfony component in case we w
 Change in specification:
  - Original input: your-program * * * * * /usr/bin/php --version
  - New input format: your-program parseCron "* * * * * /usr/bin/php --version"
+
+Made sure to deal with @ words.
