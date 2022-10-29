@@ -19,5 +19,8 @@ jobs:
           name: Composer Install
           command: php8.1 /usr/local/bin/composer install
       - run:
-          name: Test
+          name: PHPUnit
           command: php8.1 ./vendor/bin/phpunit
+      - run:
+          name: Execute
+          command: ./bin/app parseCron "*/10 1,2,3 5-11 1 6 /usr/bin/php --version"
