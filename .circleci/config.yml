@@ -6,7 +6,9 @@ jobs:
   build:
     executor: php/default
     steps:
-      - checkout
+    steps:
+      - checkout:
+          method: blobless
       - php/install-php:
           version: '8.1'
       - php/install-composer:
