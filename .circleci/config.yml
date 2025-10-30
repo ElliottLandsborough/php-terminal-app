@@ -6,7 +6,6 @@ jobs:
   build:
     executor: php/default
     steps:
-    steps:
       - checkout:
           method: blobless
       - php/install-php:
